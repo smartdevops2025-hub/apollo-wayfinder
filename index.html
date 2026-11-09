@@ -19,7 +19,7 @@
     });
     </script>
     
-    <!-- Google Analytics (You can update this ID later) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HF64PTD7GH"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -28,11 +28,8 @@
         gtag('config', 'G-HF64PTD7GH');
     </script>
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="images/apollo-logo.png" as="image">
-    
     <style>
-        /* APOLLO ADLUX PALETTE: Teal #0077A8 | Gold #BFA073 | BG #F4F7F9 */
+        /* APOLLO ADLUX PALETTE: Teal #0077A8 | Gold #BFA073 */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
@@ -40,7 +37,12 @@
             max-width: 100%;
             margin: 0 auto;
             padding: 15px;
-            background: #F4F7F9;
+            /* BACKGROUND IMAGE SETUP */
+            background-image: linear-gradient(rgba(244, 247, 249, 0.85), rgba(244, 247, 249, 0.95)), url('images/adlux.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             line-height: 1.6;
             color: #333333;
             user-select: none;
@@ -49,27 +51,29 @@
         
         .header {
             text-align: center;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 25px 20px;
             border-radius: 15px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0, 119, 168, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 119, 168, 0.2);
             border: 2px solid #0077A8;
             position: relative;
+            backdrop-filter: blur(5px);
         }
         
-        .logo-container { margin-bottom: 20px; }
+        .logo-container { margin-bottom: 15px; }
         
         .hospital-logo {
             width: 100%;
-            max-width: 300px;
+            max-width: 250px;
             height: auto;
             margin: 0 auto;
             display: block;
+            border-radius: 8px;
         }
         
         .hospital-info h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 10px;
             color: #0077A8;
             font-weight: bold;
@@ -78,7 +82,7 @@
         .hospital-subtitle {
             font-size: 1.2rem;
             color: #BFA073;
-            font-weight: 500;
+            font-weight: 600;
         }
         
         /* Hit Counter */
@@ -111,7 +115,7 @@
         
         .language-btn {
             padding: 10px 20px;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border: 2px solid #0077A8;
             border-radius: 25px;
             cursor: pointer;
@@ -120,6 +124,7 @@
             min-width: 80px;
             color: #0077A8;
             font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .language-btn:hover { background: #f0f7f9; }
@@ -142,19 +147,23 @@
             border: 2px solid #0077A8;
             border-radius: 25px;
             outline: none;
-            box-shadow: 0 2px 10px rgba(0, 119, 168, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 119, 168, 0.2);
             text-align: center;
             transition: all 0.3s ease;
         }
         
         .search-box:focus {
             border-color: #BFA073;
-            box-shadow: 0 2px 15px rgba(191, 160, 115, 0.3);
+            box-shadow: 0 2px 15px rgba(191, 160, 115, 0.4);
         }
         
         .search-hint {
-            color: #666;
-            font-size: 1rem;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.9rem;
             margin-top: 10px;
             margin-bottom: 25px;
             text-align: center;
@@ -169,13 +178,13 @@
         }
         
         .department-box {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 20px 15px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             cursor: pointer;
-            border: 2px solid #e9ecef;
+            border: 2px solid transparent;
             transition: all 0.3s ease;
             min-height: 120px;
             display: flex;
@@ -183,11 +192,12 @@
             justify-content: center;
             align-items: center;
             touch-action: manipulation;
+            backdrop-filter: blur(5px);
         }
         
         .department-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 119, 168, 0.15);
+            box-shadow: 0 5px 15px rgba(0, 119, 168, 0.3);
             border-color: #0077A8;
         }
         
@@ -218,10 +228,14 @@
         
         .no-results {
             text-align: center;
-            color: #666;
+            color: white;
+            background: rgba(220, 53, 69, 0.8);
+            padding: 10px;
+            border-radius: 10px;
             font-size: 1.2rem;
-            margin: 40px 0;
+            margin: 40px auto;
             display: none;
+            width: fit-content;
         }
         
         /* Back to top */
@@ -238,7 +252,7 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             z-index: 1000;
             font-size: 1.5rem;
             transition: all 0.3s ease;
@@ -255,9 +269,9 @@
             .department-box h3 { font-size: 0.9rem; }
             .department-box p { font-size: 0.8rem; }
             .department-location { font-size: 0.7rem; }
-            .hospital-info h1 { font-size: 1.6rem; }
+            .hospital-info h1 { font-size: 1.5rem; }
             .hospital-subtitle { font-size: 1rem; }
-            .hospital-logo { max-width: 250px; }
+            .hospital-logo { max-width: 200px; }
             .language-btn { padding: 8px 12px; font-size: 0.85rem; min-width: 60px; }
             .hit-counter { position: static; margin: 10px auto; width: fit-content; top: auto; right: auto; }
         }
@@ -265,18 +279,17 @@
         @media (min-width: 768px) {
             .departments-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
             body { max-width: 1200px; }
-            .hospital-logo { max-width: 350px; }
+            .hospital-logo { max-width: 300px; }
             .hospital-info h1 { font-size: 2.2rem; }
             .hospital-subtitle { font-size: 1.3rem; }
         }
         
         @media (min-width: 1024px) {
-            .hospital-logo { max-width: 400px; }
             .departments-grid { grid-template-columns: repeat(4, 1fr); }
         }
     </style>
     
-    <!-- Initialize Firebase (Replace with Apollo Firebase Config later) -->
+    <!-- Initialize Firebase -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyCpWKrSnQMWtgx1r_OxWtrE7CktyVcb5m0",
@@ -308,13 +321,13 @@
         </div>
         
         <div class="logo-container">
-            <!-- Apollo Adlux Logo inside images folder -->
-            <img src="images/apollo-logo.png" alt="Apollo Adlux Hospital Logo" class="hospital-logo" onerror="this.src='https://placehold.co/400x150/0077A8/white?text=Apollo+Adlux'">
+            <!-- Logo URL fixed to match your uploaded file name -->
+            <img src="images/adlux%20logo.jpg" alt="Apollo Adlux Hospital Logo" class="hospital-logo" onerror="this.src='https://placehold.co/400x150/0077A8/white?text=Apollo+Adlux'">
         </div>
         
         <div class="hospital-info">
-            <h1>Way Finder Navigation System</h1>
-            <div class="hospital-subtitle">Find your way easily</div>
+            <h1>Apollo Adlux Hospital</h1>
+            <div class="hospital-subtitle">Way Finder Navigation System</div>
         </div>
     </div>
 
@@ -341,152 +354,80 @@
     <div class="departments-grid" id="departmentsGrid">
         <!-- Pharmacy -->
         <div class="department-box" data-name="pharmacy" data-keywords="pharmacy medicine drug store op">
-            <div class="department-icon">💊</div>
-            <h3>OP Pharmacy</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Get your medicines here</p>
+            <div class="department-icon">💊</div><h3>OP Pharmacy</h3><p class="department-location">Ground Floor</p><p>Get your medicines here</p>
         </div>
         <div class="department-box" data-name="ip pharmacy" data-keywords="ip pharmacy inpatient pharmacy medicine drug store ip">
-            <div class="department-icon">💊</div>
-            <h3>IP Pharmacy</h3>
-            <p class="department-location">2nd Floor</p>
-            <p>Inpatient pharmacy services</p>
+            <div class="department-icon">💊</div><h3>IP Pharmacy</h3><p class="department-location">2nd Floor</p><p>Inpatient pharmacy services</p>
         </div>
         <div class="department-box" data-name="ip pharmacy 4th floor" data-keywords="ip pharmacy inpatient pharmacy medicine drug store ip 4th fourth floor">
-            <div class="department-icon">💊</div>
-            <h3>IP Pharmacy</h3>
-            <p class="department-location">4th Floor</p>
-            <p>Inpatient pharmacy services</p>
+            <div class="department-icon">💊</div><h3>IP Pharmacy</h3><p class="department-location">4th Floor</p><p>Inpatient pharmacy services</p>
         </div>
         <!-- Diagnostics -->
         <div class="department-box" data-name="radiology" data-keywords="radiology xray x-ray scan mri ct scanning">
-            <div class="department-icon">📋</div>
-            <h3>Radiology</h3>
-            <p class="department-location">Basement Floor</p>
-            <p>Xray & Scanning</p>
+            <div class="department-icon">📋</div><h3>Radiology</h3><p class="department-location">Basement Floor</p><p>Xray & Scanning</p>
         </div>
         <div class="department-box" data-name="lab" data-keywords="lab laboratory test blood report diagnostic pathology">
-            <div class="department-icon">🔬</div>
-            <h3>Laboratory</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Blood tests & reports</p>
+            <div class="department-icon">🔬</div><h3>Laboratory</h3><p class="department-location">Ground Floor</p><p>Blood tests & reports</p>
         </div>
         <!-- Specialties -->
         <div class="department-box" data-name="cardiology" data-keywords="chest cardiology heart cardio cardiac">
-            <div class="department-icon">❤️</div>
-            <h3>Cardiology</h3>
-            <p class="department-location">Basement Floor</p>
-            <p>Heart care & OPD</p>
+            <div class="department-icon">❤️</div><h3>Cardiology</h3><p class="department-location">Basement Floor</p><p>Heart care & OPD</p>
         </div>
         <div class="department-box" data-name="ortho" data-keywords="ortho orthopedics bone joint fracture">
-            <div class="department-icon">🦴</div>
-            <h3>Orthopedics</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Bone & joint care</p>
+            <div class="department-icon">🦴</div><h3>Orthopedics</h3><p class="department-location">Ground Floor</p><p>Bone & joint care</p>
         </div>
         <div class="department-box" data-name="ophthalmology" data-keywords="ophthalmology eye vision optical">
-            <div class="department-icon">👁️</div>
-            <h3>Ophthalmology</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Eye care OPD</p>
+            <div class="department-icon">👁️</div><h3>Ophthalmology</h3><p class="department-location">Ground Floor</p><p>Eye care OPD</p>
         </div>
         <div class="department-box" data-name="pediatrics" data-keywords="pediatrics pediatric child children kids baby infant opd child care">
-            <div class="department-icon">👶</div>
-            <h3>Pediatrics</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Child care & consultation</p>
+            <div class="department-icon">👶</div><h3>Pediatrics</h3><p class="department-location">Ground Floor</p><p>Child care & consultation</p>
         </div>
         <div class="department-box" data-name="ent" data-keywords="ent ear nose throat otolaryngology">
-            <div class="department-icon">👂</div>
-            <h3>ENT</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Ear, Nose & Throat</p>
+            <div class="department-icon">👂</div><h3>ENT</h3><p class="department-location">Ground Floor</p><p>Ear, Nose & Throat</p>
         </div>
         <div class="department-box" data-name="general medicine" data-keywords="general medicine physician internal medicine doctor consultation">
-            <div class="department-icon">🩺</div>
-            <h3>General Medicine</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Physician consultation</p>
+            <div class="department-icon">🩺</div><h3>General Medicine</h3><p class="department-location">Ground Floor</p><p>Physician consultation</p>
         </div>
         <div class="department-box" data-name="general surgery" data-keywords="general surgery surgical operation surgeon operation theatre ot">
-            <div class="department-icon">🔪</div>
-            <h3>General Surgery</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Surgical procedures & operations</p>
+            <div class="department-icon">🔪</div><h3>General Surgery</h3><p class="department-location">Ground Floor</p><p>Surgical procedures & operations</p>
         </div>
         <div class="department-box" data-name="pulmonology" data-keywords="pulmonology chest lung respiratory breathing asthma pulmo">
-            <div class="department-icon">🫁</div>
-            <h3>Pulmonology</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Lung & respiratory care</p>
+            <div class="department-icon">🫁</div><h3>Pulmonology</h3><p class="department-location">Ground Floor</p><p>Lung & respiratory care</p>
         </div>
         <div class="department-box" data-name="dermatology" data-keywords="dermatology skin skin care dermatologist skin treatment derma">
-            <div class="department-icon">🧴</div>
-            <h3>Dermatology</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Skin care & treatment</p>
+            <div class="department-icon">🧴</div><h3>Dermatology</h3><p class="department-location">Ground Floor</p><p>Skin care & treatment</p>
         </div>
         <!-- Facilities -->
         <div class="department-box" data-name="cafeteria" data-keywords="cafeteria food snack restaurant refreshment coffee tea dining west end">
-            <div class="department-icon">☕</div>
-            <h3>Cafeteria (West End)</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Food & refreshments</p>
+            <div class="department-icon">☕</div><h3>Cafeteria (West End)</h3><p class="department-location">Ground Floor</p><p>Food & refreshments</p>
         </div>
         <div class="department-box" data-name="general store" data-keywords="general store shop store shopping supplies medical store">
-            <div class="department-icon">🛒</div>
-            <h3>General Store</h3>
-            <p class="department-location">Ground Floor</p>
-            <p>Medical supplies & shopping</p>
+            <div class="department-icon">🛒</div><h3>General Store</h3><p class="department-location">Ground Floor</p><p>Medical supplies & shopping</p>
         </div>
         <!-- Critical Care & Wards -->
         <div class="department-box" data-name="icu complex" data-keywords="icu intensive care unit critical care emergency icu complex">
-            <div class="department-icon">🏥</div>
-            <h3>ICU Complex</h3>
-            <p class="department-location">2nd Floor</p>
-            <p>Intensive Care Unit</p>
+            <div class="department-icon">🏥</div><h3>ICU Complex</h3><p class="department-location">2nd Floor</p><p>Intensive Care Unit</p>
         </div>
         <div class="department-box" data-name="o t complex" data-keywords="o t complex ot operation theatre surgery surgical operating room theatre">
-            <div class="department-icon">🏥</div>
-            <h3>O T Complex</h3>
-            <p class="department-location">2nd Floor</p>
-            <p>Operation Theatre Complex</p>
+            <div class="department-icon">🏥</div><h3>O T Complex</h3><p class="department-location">2nd Floor</p><p>Operation Theatre Complex</p>
         </div>
         <div class="department-box" data-name="semi private ward" data-keywords="semi private ward private ward patient room accommodation stay 4th fourth floor spw">
-            <div class="department-icon">🏥</div>
-            <h3>Semi Private Ward</h3>
-            <p class="department-location">4th Floor</p>
-            <p>IP Ward</p>
+            <div class="department-icon">🏥</div><h3>Semi Private Ward</h3><p class="department-location">4th Floor</p><p>IP Ward</p>
         </div>
         <div class="department-box" data-name="g ward" data-keywords="g ward ward g 4th fourth floor patient accommodation stay">
-            <div class="department-icon">🏥</div>
-            <h3>G Ward</h3>
-            <p class="department-location">4th Floor</p>
-            <p>OBG / Gynaec Ward</p>
+            <div class="department-icon">🏥</div><h3>G Ward</h3><p class="department-location">4th Floor</p><p>OBG / Gynaec Ward</p>
         </div>
         <div class="department-box" data-name="d ward" data-keywords="d ward ward d 4th fourth floor patient accommodation stay">
-            <div class="department-icon">🏥</div>
-            <h3>D Ward</h3>
-            <p class="department-location">4th Floor</p>
-            <p>Pediatrics Ward</p>
+            <div class="department-icon">🏥</div><h3>D Ward</h3><p class="department-location">4th Floor</p><p>Pediatrics Ward</p>
         </div>
         <div class="department-box" data-name="c ward" data-keywords="c ward ward c 2nd second floor patient accommodation stay">
-            <div class="department-icon">🏥</div>
-            <h3>C Ward</h3>
-            <p class="department-location">2nd Floor</p>
-            <p>Patient accommodation & stay</p>
+            <div class="department-icon">🏥</div><h3>C Ward</h3><p class="department-location">2nd Floor</p><p>Patient accommodation & stay</p>
         </div>
         <div class="department-box" data-name="private ward 1" data-keywords="private ward 1 private ward patient room accommodation stay 1st first floor">
-            <div class="department-icon">🏥</div>
-            <h3>Private Ward 1</h3>
-            <p class="department-location">1st Floor</p>
-            <p>Private patient accommodation</p>
+            <div class="department-icon">🏥</div><h3>Private Ward 1</h3><p class="department-location">1st Floor</p><p>Private patient accommodation</p>
         </div>
         <div class="department-box" data-name="b ward" data-keywords="b ward ward b 2nd second floor patient accommodation stay">
-            <div class="department-icon">🏥</div>
-            <h3>B Ward</h3>
-            <p class="department-location">2nd Floor</p>
-            <p>Patient accommodation & stay</p>
+            <div class="department-icon">🏥</div><h3>B Ward</h3><p class="department-location">2nd Floor</p><p>Patient accommodation & stay</p>
         </div>
     </div>
 
@@ -549,7 +490,7 @@
         // TRANSLATIONS (EN, HI, ML, TA, AR)
         const translations = {
             en: {
-                title: "Way Finder Navigation System", subtitle: "Find your way easily",
+                title: "Apollo Adlux Hospital", subtitle: "Way Finder Navigation System",
                 searchPlaceholder: "🔍 Type department name (e.g., OPD, ICU, Lab)...",
                 searchHint: "Type to filter departments", noResults: "No departments found. Try different keywords.",
                 departments: {
@@ -580,7 +521,7 @@
                 }
             },
             hi: {
-                title: "वे फाइंडर नेविगेशन सिस्टम", subtitle: "आसानी से अपना रास्ता खोजें",
+                title: "अपोलो एडलक्स अस्पताल", subtitle: "वे फाइंडर नेविगेशन सिस्टम",
                 searchPlaceholder: "🔍 विभाग का नाम टाइप करें...", searchHint: "विभागों को फिल्टर करने के लिए टाइप करें",
                 noResults: "कोई विभाग नहीं मिला।", departments: {
                     pharmacy: { name: "ओ पी फार्मेसी", location: "ग्राउंड फ्लोर", description: "दवाएं यहां से लें" },
@@ -610,7 +551,7 @@
                 }
             },
             ml: {
-                title: "വേ ഫൈൻഡർ നാവിഗേഷൻ സിസ്റ്റം", subtitle: "എളുപ്പത്തിൽ വഴി കണ്ടെത്തുക",
+                title: "അപ്പോളോ അഡ്ലക്സ് ആശുപത്രി", subtitle: "വേ ഫൈൻഡർ നാവിഗേഷൻ സിസ്റ്റം",
                 searchPlaceholder: "🔍 വകുപ്പ് പേര് ടൈപ്പ് ചെയ്യുക...", searchHint: "ഫിൽട്ടർ ചെയ്യാൻ ടൈപ്പ് ചെയ്യുക",
                 noResults: "വകുപ്പുകൾ കണ്ടെത്തിയില്ല.", departments: {
                     pharmacy: { name: "ഒ പി ഫാർമസി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "മരുന്നുകൾ ഇവിടെ നിന്ന് ലഭിക്കും" },
@@ -640,7 +581,7 @@
                 }
             },
             ta: {
-                title: "வழிகாட்டி அமைப்பு", subtitle: "உங்கள் வழியை எளிதாகக் கண்டறியவும்",
+                title: "அப்பல்லோ அட்லக்ஸ் மருத்துவமனை", subtitle: "வழிகாட்டி அமைப்பு",
                 searchPlaceholder: "🔍 துறையின் பெயரை உள்ளிடவும்...", searchHint: "துறைகளை வடிகட்ட தட்டச்சு செய்யவும்",
                 noResults: "துறைகள் எதுவும் கிடைக்கவில்லை.", departments: {
                     pharmacy: { name: "OP மருந்தகம்", location: "தரை தளம்", description: "மருந்துகளை இங்கே பெறுங்கள்" },
@@ -670,7 +611,7 @@
                 }
             },
             ar: {
-                title: "نظام الملاحة للعثور على الطريق", subtitle: "ابحث عن طريقك بسهولة",
+                title: "مستشفى أبولو أدلوكس", subtitle: "نظام الملاحة للعثور على الطريق",
                 searchPlaceholder: "🔍 اكتب اسم القسم...", searchHint: "اكتب لتصفية الأقسام",
                 noResults: "لم يتم العثور على أقسام.", departments: {
                     pharmacy: { name: "صيدلية العيادات", location: "الطابق الأرضي", description: "احصل على أدويتك هنا" },
@@ -806,7 +747,6 @@
                     const departmentName = this.getAttribute('data-name');
                     trackDepartmentClick(departmentName);
                     
-                    // Map department names to HTML files (You will create these later)
                     const pageMap = {
                         'pharmacy': 'pharmacy.html',
                         'ip pharmacy': 'ip-pharmacy.html',
