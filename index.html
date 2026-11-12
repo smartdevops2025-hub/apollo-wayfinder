@@ -340,12 +340,20 @@
     <!-- Departments Grid -->
     <div class="departments-grid" id="departmentsGrid">
         
-        <!-- Admission Department (Only Department for now) -->
+        <!-- Admission Department -->
         <div class="department-box" data-name="admission" data-keywords="admission register patient billing help desk">
             <div class="department-icon">📝</div>
-            <h3 id="deptName">Admission</h3>
-            <p class="department-location" id="deptFloor">Ground Floor</p>
-            <p id="deptDesc">Patient admission & registration</p>
+            <h3 id="deptNameAdmission">Admission</h3>
+            <p class="department-location" id="deptFloorAdmission">Ground Floor</p>
+            <p id="deptDescAdmission">Patient admission & registration</p>
+        </div>
+
+        <!-- Insurance Department (NEW) -->
+        <div class="department-box" data-name="insurance" data-keywords="insurance claim policy health insurance desk">
+            <div class="department-icon">🛡️</div>
+            <h3 id="deptNameInsurance">Insurance</h3>
+            <p class="department-location" id="deptFloorInsurance">Ground Floor</p>
+            <p id="deptDescInsurance">Health insurance & claims</p>
         </div>
 
     </div>
@@ -407,7 +415,8 @@
                 searchHint: "Type to filter departments", 
                 noResults: "No departments found. Try different keywords.",
                 dept: {
-                    admission: { name: "Admission", location: "Ground Floor", description: "Patient admission & registration" }
+                    admission: { name: "Admission", location: "Ground Floor", description: "Patient admission & registration" },
+                    insurance: { name: "Insurance", location: "Ground Floor", description: "Health insurance & claims" }
                 }
             },
             hi: {
@@ -416,7 +425,8 @@
                 searchHint: "विभागों को फिल्टर करने के लिए टाइप करें",
                 noResults: "कोई विभाग नहीं मिला।", 
                 dept: {
-                    admission: { name: "प्रवेश (Admission)", location: "ग्राउंड फ्लोर", description: "रोगी प्रवेश और पंजीकरण" }
+                    admission: { name: "प्रवेश (Admission)", location: "ग्राउंड फ्लोर", description: "रोगी प्रवेश और पंजीकरण" },
+                    insurance: { name: "बीमा (Insurance)", location: "ग्राउंड फ्लोर", description: "स्वास्थ्य बीमा और दावे" }
                 }
             },
             ml: {
@@ -425,7 +435,8 @@
                 searchHint: "ഫിൽട്ടർ ചെയ്യാൻ ടൈപ്പ് ചെയ്യുക",
                 noResults: "വകുപ്പുകൾ കണ്ടെത്തിയില്ല.", 
                 dept: {
-                    admission: { name: "അഡ്മിഷൻ", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "രോഗി പ്രവേശനവും രജിസ്ട്രേഷനും" }
+                    admission: { name: "അഡ്മിഷൻ", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "രോഗി പ്രവേശനവും രജിസ്ട്രേഷനും" },
+                    insurance: { name: "ഇൻഷുറൻസ്", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ആരോഗ്യ ഇൻഷുറൻസും ക്ലെയിമുകളും" }
                 }
             },
             ta: {
@@ -434,7 +445,8 @@
                 searchHint: "துறைகளை வடிகட்ட தட்டச்சு செய்யவும்",
                 noResults: "துறைகள் எதுவும் கிடைக்கவில்லை.", 
                 dept: {
-                    admission: { name: "சேர்க்கை", location: "தரை தளம்", description: "நோயாளி சேர்க்கை மற்றும் பதிவு" }
+                    admission: { name: "சேர்க்கை", location: "தரை தளம்", description: "நோயாளி சேர்க்கை மற்றும் பதிவு" },
+                    insurance: { name: "காப்பீடு", location: "தரை தளம்", description: "சுகாதார காப்பீடு மற்றும் உரிமைகோரல்கள்" }
                 }
             },
             ar: {
@@ -443,7 +455,8 @@
                 searchHint: "اكتب لتصفية الأقسام",
                 noResults: "لم يتم العثور على أقسام.", 
                 dept: {
-                    admission: { name: "القبول", location: "الطابق الأرضي", description: "قبول المرضى والتسجيل" }
+                    admission: { name: "القبول", location: "الطابق الأرضي", description: "قبول المرضى والتسجيل" },
+                    insurance: { name: "التأمين", location: "الطابق الأرضي", description: "التأمين الصحي والمطالبات" }
                 }
             }
         };
@@ -488,11 +501,17 @@
             document.getElementById('searchHintText').textContent = t.searchHint;
             document.getElementById('noResults').textContent = t.noResults;
             
-            // Update department
+            // Update Admission
             const admission = t.dept.admission;
-            document.getElementById('deptName').textContent = admission.name;
-            document.getElementById('deptFloor').textContent = admission.location;
-            document.getElementById('deptDesc').textContent = admission.description;
+            document.getElementById('deptNameAdmission').textContent = admission.name;
+            document.getElementById('deptFloorAdmission').textContent = admission.location;
+            document.getElementById('deptDescAdmission').textContent = admission.description;
+
+            // Update Insurance
+            const insurance = t.dept.insurance;
+            document.getElementById('deptNameInsurance').textContent = insurance.name;
+            document.getElementById('deptFloorInsurance').textContent = insurance.location;
+            document.getElementById('deptDescInsurance').textContent = insurance.description;
         }
 
         function initializeSearch() {
@@ -534,6 +553,8 @@
                     
                     if (departmentName === 'admission') {
                         window.location.href = 'admission.html';
+                    } else if (departmentName === 'insurance') {
+                        window.location.href = 'insurance.html';
                     } else {
                         alert('Directions for ' + departmentName + ' coming soon!');
                     }
