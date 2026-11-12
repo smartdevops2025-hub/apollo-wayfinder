@@ -52,7 +52,7 @@
         .header {
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
-            /* REDUCED PADDING TO SAVE SPACE */
+            /* TIGHT PADDING TO SAVE SPACE */
             padding: 10px 15px; 
             border-radius: 15px;
             margin-bottom: 20px;
@@ -68,9 +68,9 @@
         
         .hospital-logo {
             width: 100%;
-            /* CONSTRAINED LOGO HEIGHT TO REMOVE WHITE SPACE */
-            max-width: 200px;
-            max-height: 80px;
+            /* INCREASED LOGO SIZE FOR BETTER VISIBILITY */
+            max-width: 280px;
+            max-height: 120px;
             object-fit: contain; 
             margin: 0 auto;
             display: block;
@@ -272,7 +272,8 @@
             .department-box p { font-size: 0.8rem; }
             .department-location { font-size: 0.7rem; }
             .hospital-subtitle { font-size: 1.1rem; }
-            .hospital-logo { max-height: 60px; max-width: 160px; }
+            /* MOBILE LOGO SIZE */
+            .hospital-logo { max-height: 90px; max-width: 220px; }
             .language-btn { padding: 6px 10px; font-size: 0.85rem; min-width: 60px; }
             .hit-counter { position: static; margin: 5px auto; width: fit-content; top: auto; right: auto; }
             .header { padding: 10px; }
@@ -281,7 +282,7 @@
         @media (min-width: 768px) {
             .departments-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
             body { max-width: 1200px; }
-            .hospital-logo { max-height: 90px; max-width: 220px; }
+            .hospital-logo { max-height: 130px; max-width: 300px; }
             .hospital-subtitle { font-size: 1.4rem; }
         }
         
