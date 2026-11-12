@@ -37,7 +37,6 @@
             max-width: 100%;
             margin: 0 auto;
             padding: 15px;
-            /* BACKGROUND IMAGE */
             background-image: linear-gradient(rgba(244, 247, 249, 0.4), rgba(244, 247, 249, 0.7)), url('images/adlux.jpg');
             background-size: cover;
             background-position: center;
@@ -49,7 +48,7 @@
             -webkit-user-select: none;
         }
         
-        /* REMOVED WHITE BOX FOR HEADER */
+        /* TRANSPARENT HEADER */
         .header {
             text-align: center;
             background: transparent; 
@@ -59,11 +58,8 @@
             position: relative;
         }
         
-        .logo-container { 
-            margin-bottom: 5px; 
-        }
+        .logo-container { margin-bottom: 5px; }
         
-        /* ENLARGED LOGO AND ADDED GLOW SO IT STANDS OUT ON BACKGROUND */
         .hospital-logo {
             width: 100%;
             max-width: 350px;
@@ -178,14 +174,14 @@
         
         .department-box {
             background: rgba(255, 255, 255, 0.95);
-            padding: 20px 15px;
+            padding: 25px 20px;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 3px 10px rgba(0,0,0,0.15);
             cursor: pointer;
             border: 2px solid transparent;
             transition: all 0.3s ease;
-            min-height: 120px;
+            min-height: 140px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -203,10 +199,10 @@
         
         .department-box:active { transform: scale(0.98); }
         
-        .department-icon { font-size: 2rem; margin-bottom: 10px; }
+        .department-icon { font-size: 2.5rem; margin-bottom: 10px; }
         
         .department-box h3 {
-            font-size: 1rem;
+            font-size: 1.2rem;
             margin-bottom: 5px;
             color: #0077A8;
             font-weight: bold;
@@ -223,7 +219,7 @@
             display: inline-block;
         }
         
-        .department-box p { font-size: 0.85rem; color: #444; line-height: 1.3; }
+        .department-box p { font-size: 0.9rem; color: #444; line-height: 1.3; }
         .department-box.hidden { display: none; }
         
         .no-results {
@@ -264,28 +260,21 @@
         
         /* Responsive */
         @media (max-width: 480px) {
-            .departments-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .department-box { padding: 15px 10px; min-height: 110px; }
-            .department-icon { font-size: 1.8rem; }
-            .department-box h3 { font-size: 0.9rem; }
-            .department-box p { font-size: 0.8rem; }
-            .department-location { font-size: 0.7rem; }
+            .departments-grid { grid-template-columns: repeat(1, 1fr); gap: 12px; }
+            .department-box { padding: 20px 15px; min-height: 130px; }
+            .department-icon { font-size: 2.2rem; }
+            .department-box h3 { font-size: 1.1rem; }
             .hospital-subtitle { font-size: 1.2rem; }
-            /* MOBILE LOGO SIZE */
             .hospital-logo { max-height: 130px; max-width: 250px; }
             .language-btn { padding: 6px 10px; font-size: 0.85rem; min-width: 60px; }
             .hit-counter { position: static; margin: 5px auto; width: fit-content; top: auto; right: auto; }
         }
         
         @media (min-width: 768px) {
-            .departments-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .departments-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px; margin: 0 auto 20px; }
             body { max-width: 1200px; }
             .hospital-logo { max-height: 200px; max-width: 400px; }
             .hospital-subtitle { font-size: 1.6rem; }
-        }
-        
-        @media (min-width: 1024px) {
-            .departments-grid { grid-template-columns: repeat(4, 1fr); }
         }
     </style>
     
@@ -325,7 +314,7 @@
         </div>
         
         <div class="hospital-info">
-            <div class="hospital-subtitle">Way Finder Navigation System</div>
+            <div class="hospital-subtitle" id="subtitleText">Way Finder Navigation System</div>
         </div>
     </div>
 
@@ -341,7 +330,7 @@
     <!-- Search -->
     <div class="search-container">
         <input type="text" class="search-box" id="searchInput" placeholder="🔍 Type department name...">
-        <div class="search-hint">Type to filter departments</div>
+        <div class="search-hint" id="searchHintText">Type to filter departments</div>
     </div>
 
     <div id="noResults" class="no-results">
@@ -350,83 +339,15 @@
 
     <!-- Departments Grid -->
     <div class="departments-grid" id="departmentsGrid">
-        <!-- Pharmacy -->
-        <div class="department-box" data-name="pharmacy" data-keywords="pharmacy medicine drug store op">
-            <div class="department-icon">💊</div><h3>OP Pharmacy</h3><p class="department-location">Ground Floor</p><p>Get your medicines here</p>
+        
+        <!-- Admission Department (Only Department for now) -->
+        <div class="department-box" data-name="admission" data-keywords="admission register patient billing help desk">
+            <div class="department-icon">📝</div>
+            <h3 id="deptName">Admission</h3>
+            <p class="department-location" id="deptFloor">Ground Floor</p>
+            <p id="deptDesc">Patient admission & registration</p>
         </div>
-        <div class="department-box" data-name="ip pharmacy" data-keywords="ip pharmacy inpatient pharmacy medicine drug store ip">
-            <div class="department-icon">💊</div><h3>IP Pharmacy</h3><p class="department-location">2nd Floor</p><p>Inpatient pharmacy services</p>
-        </div>
-        <div class="department-box" data-name="ip pharmacy 4th floor" data-keywords="ip pharmacy inpatient pharmacy medicine drug store ip 4th fourth floor">
-            <div class="department-icon">💊</div><h3>IP Pharmacy</h3><p class="department-location">4th Floor</p><p>Inpatient pharmacy services</p>
-        </div>
-        <!-- Diagnostics -->
-        <div class="department-box" data-name="radiology" data-keywords="radiology xray x-ray scan mri ct scanning">
-            <div class="department-icon">📋</div><h3>Radiology</h3><p class="department-location">Basement Floor</p><p>Xray & Scanning</p>
-        </div>
-        <div class="department-box" data-name="lab" data-keywords="lab laboratory test blood report diagnostic pathology">
-            <div class="department-icon">🔬</div><h3>Laboratory</h3><p class="department-location">Ground Floor</p><p>Blood tests & reports</p>
-        </div>
-        <!-- Specialties -->
-        <div class="department-box" data-name="cardiology" data-keywords="chest cardiology heart cardio cardiac">
-            <div class="department-icon">❤️</div><h3>Cardiology</h3><p class="department-location">Basement Floor</p><p>Heart care & OPD</p>
-        </div>
-        <div class="department-box" data-name="ortho" data-keywords="ortho orthopedics bone joint fracture">
-            <div class="department-icon">🦴</div><h3>Orthopedics</h3><p class="department-location">Ground Floor</p><p>Bone & joint care</p>
-        </div>
-        <div class="department-box" data-name="ophthalmology" data-keywords="ophthalmology eye vision optical">
-            <div class="department-icon">👁️</div><h3>Ophthalmology</h3><p class="department-location">Ground Floor</p><p>Eye care OPD</p>
-        </div>
-        <div class="department-box" data-name="pediatrics" data-keywords="pediatrics pediatric child children kids baby infant opd child care">
-            <div class="department-icon">👶</div><h3>Pediatrics</h3><p class="department-location">Ground Floor</p><p>Child care & consultation</p>
-        </div>
-        <div class="department-box" data-name="ent" data-keywords="ent ear nose throat otolaryngology">
-            <div class="department-icon">👂</div><h3>ENT</h3><p class="department-location">Ground Floor</p><p>Ear, Nose & Throat</p>
-        </div>
-        <div class="department-box" data-name="general medicine" data-keywords="general medicine physician internal medicine doctor consultation">
-            <div class="department-icon">🩺</div><h3>General Medicine</h3><p class="department-location">Ground Floor</p><p>Physician consultation</p>
-        </div>
-        <div class="department-box" data-name="general surgery" data-keywords="general surgery surgical operation surgeon operation theatre ot">
-            <div class="department-icon">🔪</div><h3>General Surgery</h3><p class="department-location">Ground Floor</p><p>Surgical procedures & operations</p>
-        </div>
-        <div class="department-box" data-name="pulmonology" data-keywords="pulmonology chest lung respiratory breathing asthma pulmo">
-            <div class="department-icon">🫁</div><h3>Pulmonology</h3><p class="department-location">Ground Floor</p><p>Lung & respiratory care</p>
-        </div>
-        <div class="department-box" data-name="dermatology" data-keywords="dermatology skin skin care dermatologist skin treatment derma">
-            <div class="department-icon">🧴</div><h3>Dermatology</h3><p class="department-location">Ground Floor</p><p>Skin care & treatment</p>
-        </div>
-        <!-- Facilities -->
-        <div class="department-box" data-name="cafeteria" data-keywords="cafeteria food snack restaurant refreshment coffee tea dining west end">
-            <div class="department-icon">☕</div><h3>Cafeteria (West End)</h3><p class="department-location">Ground Floor</p><p>Food & refreshments</p>
-        </div>
-        <div class="department-box" data-name="general store" data-keywords="general store shop store shopping supplies medical store">
-            <div class="department-icon">🛒</div><h3>General Store</h3><p class="department-location">Ground Floor</p><p>Medical supplies & shopping</p>
-        </div>
-        <!-- Critical Care & Wards -->
-        <div class="department-box" data-name="icu complex" data-keywords="icu intensive care unit critical care emergency icu complex">
-            <div class="department-icon">🏥</div><h3>ICU Complex</h3><p class="department-location">2nd Floor</p><p>Intensive Care Unit</p>
-        </div>
-        <div class="department-box" data-name="o t complex" data-keywords="o t complex ot operation theatre surgery surgical operating room theatre">
-            <div class="department-icon">🏥</div><h3>O T Complex</h3><p class="department-location">2nd Floor</p><p>Operation Theatre Complex</p>
-        </div>
-        <div class="department-box" data-name="semi private ward" data-keywords="semi private ward private ward patient room accommodation stay 4th fourth floor spw">
-            <div class="department-icon">🏥</div><h3>Semi Private Ward</h3><p class="department-location">4th Floor</p><p>IP Ward</p>
-        </div>
-        <div class="department-box" data-name="g ward" data-keywords="g ward ward g 4th fourth floor patient accommodation stay">
-            <div class="department-icon">🏥</div><h3>G Ward</h3><p class="department-location">4th Floor</p><p>OBG / Gynaec Ward</p>
-        </div>
-        <div class="department-box" data-name="d ward" data-keywords="d ward ward d 4th fourth floor patient accommodation stay">
-            <div class="department-icon">🏥</div><h3>D Ward</h3><p class="department-location">4th Floor</p><p>Pediatrics Ward</p>
-        </div>
-        <div class="department-box" data-name="c ward" data-keywords="c ward ward c 2nd second floor patient accommodation stay">
-            <div class="department-icon">🏥</div><h3>C Ward</h3><p class="department-location">2nd Floor</p><p>Patient accommodation & stay</p>
-        </div>
-        <div class="department-box" data-name="private ward 1" data-keywords="private ward 1 private ward patient room accommodation stay 1st first floor">
-            <div class="department-icon">🏥</div><h3>Private Ward 1</h3><p class="department-location">1st Floor</p><p>Private patient accommodation</p>
-        </div>
-        <div class="department-box" data-name="b ward" data-keywords="b ward ward b 2nd second floor patient accommodation stay">
-            <div class="department-icon">🏥</div><h3>B Ward</h3><p class="department-location">2nd Floor</p><p>Patient accommodation & stay</p>
-        </div>
+
     </div>
 
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">↑</button>
@@ -478,164 +399,51 @@
             return num.toString();
         }
 
-        // ANALYTICS
-        function trackDepartmentClick(department) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'department_click', { 'event_category': 'Navigation', 'event_label': department });
-            }
-        }
-
-        // TRANSLATIONS (EN, HI, ML, TA, AR)
+        // TRANSLATIONS
         const translations = {
             en: {
                 subtitle: "Way Finder Navigation System",
-                searchPlaceholder: "🔍 Type department name (e.g., OPD, ICU, Lab)...",
-                searchHint: "Type to filter departments", noResults: "No departments found. Try different keywords.",
-                departments: {
-                    pharmacy: { name: "OP Pharmacy", location: "Ground Floor", description: "Get your medicines here" },
-                    "ip pharmacy": { name: "IP Pharmacy", location: "2nd Floor", description: "Inpatient pharmacy services" },
-                    "ip pharmacy 4th floor": { name: "IP Pharmacy", location: "4th Floor", description: "Inpatient pharmacy services" },
-                    radiology: { name: "Radiology", location: "Basement Floor", description: "Xray & Scanning" },
-                    lab: { name: "Laboratory", location: "Ground Floor", description: "Blood tests & reports" },
-                    cardiology: { name: "Cardiology", location: "Basement Floor", description: "Heart care & OPD" },
-                    ortho: { name: "Orthopedics", location: "Ground Floor", description: "Bone & joint care" },
-                    ophthalmology: { name: "Ophthalmology", location: "Ground Floor", description: "Eye care OPD" },
-                    pediatrics: { name: "Pediatrics", location: "Ground Floor", description: "Child care & consultation" },
-                    ent: { name: "ENT", location: "Ground Floor", description: "Ear, Nose & Throat" },
-                    "general medicine": { name: "General Medicine", location: "Ground Floor", description: "Physician consultation" },
-                    "general surgery": { name: "General Surgery", location: "Ground Floor", description: "Surgical procedures" },
-                    pulmonology: { name: "Pulmonology", location: "Ground Floor", description: "Lung & respiratory care" },
-                    dermatology: { name: "Dermatology", location: "Ground Floor", description: "Skin care & treatment" },
-                    cafeteria: { name: "Cafeteria", location: "Ground Floor", description: "Food & refreshments" },
-                    "general store": { name: "General Store", location: "Ground Floor", description: "Medical supplies" },
-                    "icu complex": { name: "ICU Complex", location: "2nd Floor", description: "Intensive Care Unit" },
-                    "o t complex": { name: "O T Complex", location: "2nd Floor", description: "Operation Theatre" },
-                    "semi private ward": { name: "Semi Private Ward", location: "4th Floor", description: "IP Ward" },
-                    "g ward": { name: "G Ward", location: "4th Floor", description: "OBG / Gynaec Ward" },
-                    "d ward": { name: "D Ward", location: "4th Floor", description: "Pediatrics Ward" },
-                    "c ward": { name: "C Ward", location: "2nd Floor", description: "Patient accommodation" },
-                    "private ward 1": { name: "Private Ward 1", location: "1st Floor", description: "Private accommodation" },
-                    "b ward": { name: "B Ward", location: "2nd Floor", description: "Patient accommodation" }
+                searchPlaceholder: "🔍 Type department name...",
+                searchHint: "Type to filter departments", 
+                noResults: "No departments found. Try different keywords.",
+                dept: {
+                    admission: { name: "Admission", location: "Ground Floor", description: "Patient admission & registration" }
                 }
             },
             hi: {
                 subtitle: "वे फाइंडर नेविगेशन सिस्टम",
-                searchPlaceholder: "🔍 विभाग का नाम टाइप करें...", searchHint: "विभागों को फिल्टर करने के लिए टाइप करें",
-                noResults: "कोई विभाग नहीं मिला।", departments: {
-                    pharmacy: { name: "ओ पी फार्मेसी", location: "ग्राउंड फ्लोर", description: "दवाएं यहां से लें" },
-                    "ip pharmacy": { name: "आई पी फार्मेसी", location: "दूसरी मंजिल", description: "इनपेशेंट फार्मेसी" },
-                    "ip pharmacy 4th floor": { name: "आई पी फार्मेसी", location: "चौथी मंजिल", description: "इनपेशेंट फार्मेसी" },
-                    radiology: { name: "रेडियोलॉजी", location: "बेसमेंट", description: "एक्सरे और स्कैनिंग" },
-                    lab: { name: "प्रयोगशाला", location: "ग्राउंड फ्लोर", description: "रक्त परीक्षण" },
-                    cardiology: { name: "कार्डियोलॉजी", location: "बेसमेंट", description: "हृदय देखभाल" },
-                    ortho: { name: "ऑर्थोपेडिक्स", location: "ग्राउंड फ्लोर", description: "हड्डी देखभाल" },
-                    ophthalmology: { name: "नेत्र विज्ञान", location: "ग्राउंड फ्लोर", description: "आंखों की देखभाल" },
-                    pediatrics: { name: "पीडियाट्रिक्स", location: "ग्राउंड फ्लोर", description: "बच्चों की देखभाल" },
-                    ent: { name: "ईएनटी", location: "ग्राउंड फ्लोर", description: "कान, नाक, गला" },
-                    "general medicine": { name: "जनरल मेडिसिन", location: "ग्राउंड फ्लोर", description: "फिजिशियन परामर्श" },
-                    "general surgery": { name: "जनरल सर्जरी", location: "ग्राउंड फ्लोर", description: "सर्जिकल प्रक्रियाएं" },
-                    pulmonology: { name: "पल्मोनोलॉजी", location: "ग्राउंड फ्लोर", description: "फेफड़े की देखभाल" },
-                    dermatology: { name: "त्वचा विज्ञान", location: "ग्राउंड फ्लोर", description: "त्वचा देखभाल" },
-                    cafeteria: { name: "कैफेटेरिया", location: "ग्राउंड फ्लोर", description: "भोजन" },
-                    "general store": { name: "जनरल स्टोर", location: "ग्राउंड फ्लोर", description: "खरीदारी" },
-                    "icu complex": { name: "आईसीयू कॉम्प्लेक्स", location: "दूसरी मंजिल", description: "इंटेंसिव केयर" },
-                    "o t complex": { name: "ओ टी कॉम्प्लेक्स", location: "दूसरी मंजिल", description: "ऑपरेशन थिएटर" },
-                    "semi private ward": { name: "सेमी प्राइवेट वार्ड", location: "चौथी मंजिल", description: "इनपेशेंट वार्ड" },
-                    "g ward": { name: "जी वार्ड", location: "चौथी मंजिल", description: "ओबीजी वार्ड" },
-                    "d ward": { name: "डी वार्ड", location: "चौथी मंजिल", description: "पीडियाट्रिक्स वार्ड" },
-                    "c ward": { name: "सी वार्ड", location: "दूसरी मंजिल", description: "रोगी आवास" },
-                    "private ward 1": { name: "प्राइवेट वार्ड 1", location: "पहली मंजिल", description: "निजी आवास" },
-                    "b ward": { name: "बी वार्ड", location: "दूसरी मंजिल", description: "रोगी आवास" }
+                searchPlaceholder: "🔍 विभाग का नाम टाइप करें...", 
+                searchHint: "विभागों को फिल्टर करने के लिए टाइप करें",
+                noResults: "कोई विभाग नहीं मिला।", 
+                dept: {
+                    admission: { name: "प्रवेश (Admission)", location: "ग्राउंड फ्लोर", description: "रोगी प्रवेश और पंजीकरण" }
                 }
             },
             ml: {
                 subtitle: "വേ ഫൈൻഡർ നാവിഗേഷൻ സിസ്റ്റം",
-                searchPlaceholder: "🔍 വകുപ്പ് പേര് ടൈപ്പ് ചെയ്യുക...", searchHint: "ഫിൽട്ടർ ചെയ്യാൻ ടൈപ്പ് ചെയ്യുക",
-                noResults: "വകുപ്പുകൾ കണ്ടെത്തിയില്ല.", departments: {
-                    pharmacy: { name: "ഒ പി ഫാർമസി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "മരുന്നുകൾ ഇവിടെ നിന്ന് ലഭിക്കും" },
-                    "ip pharmacy": { name: "ഐ പി ഫാർമസി", location: "രണ്ടാം നില", description: "ഇൻപേഷ്യന്റ് ഫാർമസി" },
-                    "ip pharmacy 4th floor": { name: "ഐ പി ഫാർമസി", location: "നാലാം നില", description: "ഇൻപേഷ്യന്റ് ഫാർമസി" },
-                    radiology: { name: "റേഡിയോളജി", location: "ബേസ്മെന്റ്", description: "എക്സ്-റേ" },
-                    lab: { name: "ലബോറട്ടറി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "രക്ത പരിശോധന" },
-                    cardiology: { name: "കാർഡിയോളജി", location: "ബേസ്മെന്റ്", description: "ഹൃദയ പരിചരണം" },
-                    ortho: { name: "ഓർത്തോപീഡിക്സ്", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "അസ്ഥി പരിചരണം" },
-                    ophthalmology: { name: "ഓഫ്താൽമോളജി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "കണ്ണ് പരിചരണം" },
-                    pediatrics: { name: "പീഡിയാട്രിക്സ്", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "കുട്ടികളുടെ പരിചരണം" },
-                    ent: { name: "ഇഎൻടി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ചെവി, മൂക്ക്, തൊണ്ട" },
-                    "general medicine": { name: "ജനറൽ മെഡിസിൻ", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ഫിസിഷ്യൻ കൺസൾട്ടേഷൻ" },
-                    "general surgery": { name: "ജനറൽ സർജറി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "സർജിക്കൽ നടപടികൾ" },
-                    pulmonology: { name: "പൾമോനോളജി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ശ്വാസകോശ പരിചരണം" },
-                    dermatology: { name: "ഡെർമറ്റോളജി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ത്വക്ക് പരിചരണം" },
-                    cafeteria: { name: "കഫേറ്റീരിയ", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ഭക്ഷണം" },
-                    "general store": { name: "ജനറൽ സ്റ്റോർ", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ഷോപ്പിംഗ്" },
-                    "icu complex": { name: "ഐസിയു കോംപ്ലക്സ്", location: "രണ്ടാം നില", description: "ഇൻറെൻസീവ് കെയർ" },
-                    "o t complex": { name: "ഒ ടി കോംപ്ലക്സ്", location: "രണ്ടാം നില", description: "ഓപ്പറേഷൻ തിയേറ്റർ" },
-                    "semi private ward": { name: "സെമി പ്രൈവറ്റ് വാർഡ്", location: "നാലാം നില", description: "ഇൻപേഷ്യന്റ് വാർഡ്" },
-                    "g ward": { name: "ജി വാർഡ്", location: "നാലാം നില", description: "ഒബിജി വാർഡ്" },
-                    "d ward": { name: "ഡി വാർഡ്", location: "നാലാം നില", description: "പീഡിയാട്രിക്സ് വാർഡ്" },
-                    "c ward": { name: "സി വാർഡ്", location: "രണ്ടാം നില", description: "രോഗി താമസം" },
-                    "private ward 1": { name: "പ്രൈവറ്റ് വാർഡ് 1", location: "ഒന്നാം നില", description: "സ്വകാര്യ താമസം" },
-                    "b ward": { name: "ബി വാർഡ്", location: "രണ്ടാം നില", description: "രോഗി താമസം" }
+                searchPlaceholder: "🔍 വകുപ്പ് പേര് ടൈപ്പ് ചെയ്യുക...", 
+                searchHint: "ഫിൽട്ടർ ചെയ്യാൻ ടൈപ്പ് ചെയ്യുക",
+                noResults: "വകുപ്പുകൾ കണ്ടെത്തിയില്ല.", 
+                dept: {
+                    admission: { name: "അഡ്മിഷൻ", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "രോഗി പ്രവേശനവും രജിസ്ട്രേഷനും" }
                 }
             },
             ta: {
                 subtitle: "வழிகாட்டி அமைப்பு",
-                searchPlaceholder: "🔍 துறையின் பெயரை உள்ளிடவும்...", searchHint: "துறைகளை வடிகட்ட தட்டச்சு செய்யவும்",
-                noResults: "துறைகள் எதுவும் கிடைக்கவில்லை.", departments: {
-                    pharmacy: { name: "OP மருந்தகம்", location: "தரை தளம்", description: "மருந்துகளை இங்கே பெறுங்கள்" },
-                    "ip pharmacy": { name: "IP மருந்தகம்", location: "2வது தளம்", description: "உள்நோயாளி மருந்தகம்" },
-                    "ip pharmacy 4th floor": { name: "IP மருந்தகம்", location: "4வது தளம்", description: "உள்நோயாளி மருந்தகம்" },
-                    radiology: { name: "கதிரியக்கவியல்", location: "அடித்தளம்", description: "எக்ஸ்ரே & ஸ்கேனிங்" },
-                    lab: { name: "ஆய்வகம்", location: "தரை தளம்", description: "இரத்த பரிசோதனை" },
-                    cardiology: { name: "இதயவியல்", location: "அடித்தளம்", description: "இதய பராமரிப்பு" },
-                    ortho: { name: "எலும்பியல்", location: "தரை தளம்", description: "எலும்பு பராமரிப்பு" },
-                    ophthalmology: { name: "கண் மருத்துவம்", location: "தரை தளம்", description: "கண் பராமரிப்பு" },
-                    pediatrics: { name: "குழந்தை மருத்துவம்", location: "தரை தளம்", description: "குழந்தை பராமரிப்பு" },
-                    ent: { name: "ENT", location: "தரை தளம்", description: "காது, மூக்கு, தொண்டை" },
-                    "general medicine": { name: "பொது மருத்துவம்", location: "தரை தளம்", description: "மருத்துவர் ஆலோசனை" },
-                    "general surgery": { name: "பொது அறுவை சிகிச்சை", location: "தரை தளம்", description: "அறுவை சிகிச்சைகள்" },
-                    pulmonology: { name: "நுரையீரல் மருத்துவம்", location: "தரை தளம்", description: "நுரையீரல் பராமரிப்பு" },
-                    dermatology: { name: "தோல் மருத்துவம்", location: "தரை தளம்", description: "தோல் பராமரிப்பு" },
-                    cafeteria: { name: "உணவகம்", location: "தரை தளம்", description: "உணவு & பானங்கள்" },
-                    "general store": { name: "பொது கடை", location: "தரை தளம்", description: "மருத்துவ பொருட்கள்" },
-                    "icu complex": { name: "ICU வளாகம்", location: "2வது தளம்", description: "தீவிர சிகிச்சை பிரிவு" },
-                    "o t complex": { name: "OT வளாகம்", location: "2வது தளம்", description: "அறுவை சிகிச்சை அரங்கம்" },
-                    "semi private ward": { name: "செமி பிரைவேட் வார்டு", location: "4வது தளம்", description: "உள்நோயாளி வார்டு" },
-                    "g ward": { name: "G வார்டு", location: "4வது தளம்", description: "OBG வார்டு" },
-                    "d ward": { name: "D வார்டு", location: "4வது தளம்", description: "குழந்தை வார்டு" },
-                    "c ward": { name: "C வார்டு", location: "2வது தளம்", description: "நோயாளர் தங்குமிடம்" },
-                    "private ward 1": { name: "பிரைவேட் வார்டு 1", location: "1வது தளம்", description: "தனிப்பட்ட தங்குமிடம்" },
-                    "b ward": { name: "B வார்டு", location: "2வது தளம்", description: "நோயாளர் தங்குமிடம்" }
+                searchPlaceholder: "🔍 துறையின் பெயரை உள்ளிடவும்...", 
+                searchHint: "துறைகளை வடிகட்ட தட்டச்சு செய்யவும்",
+                noResults: "துறைகள் எதுவும் கிடைக்கவில்லை.", 
+                dept: {
+                    admission: { name: "சேர்க்கை", location: "தரை தளம்", description: "நோயாளி சேர்க்கை மற்றும் பதிவு" }
                 }
             },
             ar: {
                 subtitle: "نظام الملاحة للعثور على الطريق",
-                searchPlaceholder: "🔍 اكتب اسم القسم...", searchHint: "اكتب لتصفية الأقسام",
-                noResults: "لم يتم العثور على أقسام.", departments: {
-                    pharmacy: { name: "صيدلية العيادات", location: "الطابق الأرضي", description: "احصل على أدويتك هنا" },
-                    "ip pharmacy": { name: "صيدلية المرضى", location: "الطابق الثاني", description: "خدمات صيدلية المرضى" },
-                    "ip pharmacy 4th floor": { name: "صيدلية المرضى", location: "الطابق الرابع", description: "خدمات صيدلية المرضى" },
-                    radiology: { name: "الأشعة", location: "الطابق السفلي", description: "الأشعة والمسح" },
-                    lab: { name: "المختبر", location: "الطابق الأرضي", description: "اختبارات الدم" },
-                    cardiology: { name: "طب القلب", location: "الطابق السفلي", description: "رعاية القلب" },
-                    ortho: { name: "العظام", location: "الطابق الأرضي", description: "رعاية العظام" },
-                    ophthalmology: { name: "طب العيون", location: "الطابق الأرضي", description: "رعاية العيون" },
-                    pediatrics: { name: "طب الأطفال", location: "الطابق الأرضي", description: "رعاية الأطفال" },
-                    ent: { name: "الأنف والأذن", location: "الطابق الأرضي", description: "الأذن والأنف والحنجرة" },
-                    "general medicine": { name: "الطب العام", location: "الطابق الأرضي", description: "استشارات الطبيب" },
-                    "general surgery": { name: "الجراحة العامة", location: "الطابق الأرضي", description: "الإجراءات الجراحية" },
-                    pulmonology: { name: "طب الرئة", location: "الطابق الأرضي", description: "رعاية الرئة" },
-                    dermatology: { name: "طب الجلد", location: "الطابق الأرضي", description: "رعاية الجلد" },
-                    cafeteria: { name: "الكافيتيريا", location: "الطابق الأرضي", description: "الطعام والمرطبات" },
-                    "general store": { name: "المتجر العام", location: "الطابق الأرضي", description: "الإمدادات الطبية" },
-                    "icu complex": { name: "مجمع العناية المركزة", location: "الطابق الثاني", description: "وحدة العناية المركزة" },
-                    "o t complex": { name: "مجمع غرفة العمليات", location: "الطابق الثاني", description: "غرفة العمليات" },
-                    "semi private ward": { name: "جناح شبه خاص", location: "الطابق الرابع", description: "جناح المرضى" },
-                    "g ward": { name: "جناح G", location: "الطابق الرابع", description: "جناح النساء" },
-                    "d ward": { name: "جناح D", location: "الطابق الرابع", description: "جناح الأطفال" },
-                    "c ward": { name: "جناح C", location: "الطابق الثاني", description: "إقامة المرضى" },
-                    "private ward 1": { name: "جناح خاص 1", location: "الطابق الأول", description: "إقامة خاصة" },
-                    "b ward": { name: "جناح B", location: "الطابق الثاني", description: "إقامة المرضى" }
+                searchPlaceholder: "🔍 اكتب اسم القسم...", 
+                searchHint: "اكتب لتصفية الأقسام",
+                noResults: "لم يتم العثور على أقسام.", 
+                dept: {
+                    admission: { name: "القبول", location: "الطابق الأرضي", description: "قبول المرضى والتسجيل" }
                 }
             }
         };
@@ -646,10 +454,6 @@
             initializeLanguage();
             initializeSearch();
             initializeBackToTop();
-            
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'page_view', { 'page_title': 'Apollo Adlux Navigation Home' });
-            }
         });
 
         function initializeLanguage() {
@@ -679,31 +483,16 @@
             localStorage.setItem('selectedLanguage', lang);
             const t = translations[lang];
             
-            document.querySelector('.hospital-subtitle').textContent = t.subtitle;
+            document.getElementById('subtitleText').textContent = t.subtitle;
             document.getElementById('searchInput').placeholder = t.searchPlaceholder;
-            document.querySelector('.search-hint').textContent = t.searchHint;
+            document.getElementById('searchHintText').textContent = t.searchHint;
             document.getElementById('noResults').textContent = t.noResults;
             
-            updateDepartmentTranslations(t.departments);
-        }
-
-        function updateDepartmentTranslations(departmentTranslations) {
-            const departmentBoxes = document.querySelectorAll('.department-box');
-            
-            departmentBoxes.forEach(function(box) {
-                const departmentName = box.getAttribute('data-name');
-                const translation = departmentTranslations[departmentName];
-                
-                if (translation) {
-                    const titleElement = box.querySelector('h3');
-                    const locationElement = box.querySelector('.department-location');
-                    const descriptionElement = box.querySelector('p:last-child');
-                    
-                    if (titleElement) titleElement.textContent = translation.name;
-                    if (locationElement) locationElement.textContent = translation.location;
-                    if (descriptionElement) descriptionElement.textContent = translation.description;
-                }
-            });
+            // Update department
+            const admission = t.dept.admission;
+            document.getElementById('deptName').textContent = admission.name;
+            document.getElementById('deptFloor').textContent = admission.location;
+            document.getElementById('deptDesc').textContent = admission.description;
         }
 
         function initializeSearch() {
@@ -738,42 +527,13 @@
                 }.bind(this), 300);
             });
 
-            // Department click handlers
+            // Department click handler
             departmentBoxes.forEach(function(box) {
                 box.addEventListener('click', function() {
                     const departmentName = this.getAttribute('data-name');
-                    trackDepartmentClick(departmentName);
                     
-                    const pageMap = {
-                        'pharmacy': 'pharmacy.html',
-                        'ip pharmacy': 'ip-pharmacy.html',
-                        'ip pharmacy 4th floor': 'ip-pharmacy-4th.html',
-                        'radiology': 'radiology.html',
-                        'cardiology': 'cardiology.html',
-                        'lab': 'lab.html',
-                        'ortho': 'ortho.html',
-                        'ophthalmology': 'ophthal.html',
-                        'cafeteria': 'westend.html',
-                        'pediatrics': 'pediatrics.html',
-                        'ent': 'ent.html',
-                        'general medicine': 'general-medicine.html',
-                        'general surgery': 'general-surgery.html',
-                        'general store': 'general-store.html',
-                        'pulmonology': 'pulmonology.html',
-                        'dermatology': 'dermatology.html',
-                        'icu complex': 'icu_complex.html',
-                        'o t complex': 'o_t_complex.html',
-                        'semi private ward': 'semi-private-ward.html',
-                        'g ward': 'g_ward.html',
-                        'd ward': 'd_ward.html',
-                        'c ward': 'c_ward.html',
-                        'private ward 1': 'private-ward-1.html',
-                        'b ward': 'b_ward.html'
-                    };
-                    
-                    const targetPage = pageMap[departmentName];
-                    if (targetPage) {
-                        window.location.href = targetPage;
+                    if (departmentName === 'admission') {
+                        window.location.href = 'admission.html';
                     } else {
                         alert('Directions for ' + departmentName + ' coming soon!');
                     }
