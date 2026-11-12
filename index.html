@@ -37,7 +37,7 @@
             max-width: 100%;
             margin: 0 auto;
             padding: 15px;
-            /* BACKGROUND IMAGE - LIGHTER OVERLAY FOR CLARITY */
+            /* BACKGROUND IMAGE */
             background-image: linear-gradient(rgba(244, 247, 249, 0.4), rgba(244, 247, 249, 0.7)), url('images/adlux.jpg');
             background-size: cover;
             background-position: center;
@@ -52,49 +52,47 @@
         .header {
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
-            padding: 25px 20px;
+            /* REDUCED PADDING TO SAVE SPACE */
+            padding: 10px 15px; 
             border-radius: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0, 119, 168, 0.2);
             border: 2px solid #0077A8;
             position: relative;
-            backdrop-filter: blur(8px); /* Blurs the background behind the box */
+            backdrop-filter: blur(8px);
         }
         
-        .logo-container { margin-bottom: 10px; }
+        .logo-container { 
+            margin-bottom: 5px; 
+        }
         
         .hospital-logo {
             width: 100%;
-            max-width: 250px;
-            height: auto;
+            /* CONSTRAINED LOGO HEIGHT TO REMOVE WHITE SPACE */
+            max-width: 200px;
+            max-height: 80px;
+            object-fit: contain; 
             margin: 0 auto;
             display: block;
-            border-radius: 8px;
-        }
-        
-        .hospital-info h1 {
-            font-size: 1.6rem;
-            margin-bottom: 5px;
-            color: #0077A8;
-            font-weight: bold;
         }
         
         .hospital-subtitle {
             font-size: 1.2rem;
             color: #BFA073;
             font-weight: 600;
+            margin: 0;
         }
         
         /* Hit Counter */
         .hit-counter {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px;
+            right: 10px;
             background: #BFA073;
             color: white;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             display: flex;
@@ -114,14 +112,14 @@
         }
         
         .language-btn {
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: rgba(255, 255, 255, 0.95);
             border: 2px solid #0077A8;
             border-radius: 25px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
-            min-width: 80px;
+            min-width: 70px;
             color: #0077A8;
             font-weight: 600;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -133,7 +131,7 @@
         
         /* Search Section */
         .search-container {
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -143,8 +141,8 @@
         .search-box {
             width: 100%;
             max-width: 400px;
-            padding: 15px 20px;
-            font-size: 1.2rem;
+            padding: 12px 20px;
+            font-size: 1.1rem;
             border: 2px solid #0077A8;
             border-radius: 25px;
             outline: none;
@@ -163,11 +161,11 @@
         .search-hint {
             color: #ffffff;
             background: rgba(0, 0, 0, 0.6);
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 10px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            margin-bottom: 25px;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            margin-bottom: 20px;
             text-align: center;
         }
         
@@ -273,19 +271,18 @@
             .department-box h3 { font-size: 0.9rem; }
             .department-box p { font-size: 0.8rem; }
             .department-location { font-size: 0.7rem; }
-            .hospital-info h1 { font-size: 1.4rem; }
-            .hospital-subtitle { font-size: 1rem; }
-            .hospital-logo { max-width: 200px; }
-            .language-btn { padding: 8px 12px; font-size: 0.85rem; min-width: 60px; }
-            .hit-counter { position: static; margin: 10px auto; width: fit-content; top: auto; right: auto; }
+            .hospital-subtitle { font-size: 1.1rem; }
+            .hospital-logo { max-height: 60px; max-width: 160px; }
+            .language-btn { padding: 6px 10px; font-size: 0.85rem; min-width: 60px; }
+            .hit-counter { position: static; margin: 5px auto; width: fit-content; top: auto; right: auto; }
+            .header { padding: 10px; }
         }
         
         @media (min-width: 768px) {
             .departments-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
             body { max-width: 1200px; }
-            .hospital-logo { max-width: 300px; }
-            .hospital-info h1 { font-size: 2rem; }
-            .hospital-subtitle { font-size: 1.3rem; }
+            .hospital-logo { max-height: 90px; max-width: 220px; }
+            .hospital-subtitle { font-size: 1.4rem; }
         }
         
         @media (min-width: 1024px) {
@@ -329,8 +326,7 @@
         </div>
         
         <div class="hospital-info">
-            <!-- Removed the duplicate Hospital Name title here -->
-            <div class="hospital-subtitle" style="font-size: 1.4rem; margin-top: 10px;">Way Finder Navigation System</div>
+            <div class="hospital-subtitle">Way Finder Navigation System</div>
         </div>
     </div>
 
@@ -345,7 +341,7 @@
 
     <!-- Search -->
     <div class="search-container">
-        <input type="text" class="search-box" id="searchInput" placeholder="🔍 Type department name (e.g., OPD, ICU, Lab)...">
+        <input type="text" class="search-box" id="searchInput" placeholder="🔍 Type department name...">
         <div class="search-hint">Type to filter departments</div>
     </div>
 
@@ -493,7 +489,7 @@
         // TRANSLATIONS (EN, HI, ML, TA, AR)
         const translations = {
             en: {
-                title: "Apollo Adlux Hospital", subtitle: "Way Finder Navigation System",
+                subtitle: "Way Finder Navigation System",
                 searchPlaceholder: "🔍 Type department name (e.g., OPD, ICU, Lab)...",
                 searchHint: "Type to filter departments", noResults: "No departments found. Try different keywords.",
                 departments: {
@@ -524,7 +520,7 @@
                 }
             },
             hi: {
-                title: "अपोलो एडलक्स अस्पताल", subtitle: "वे फाइंडर नेविगेशन सिस्टम",
+                subtitle: "वे फाइंडर नेविगेशन सिस्टम",
                 searchPlaceholder: "🔍 विभाग का नाम टाइप करें...", searchHint: "विभागों को फिल्टर करने के लिए टाइप करें",
                 noResults: "कोई विभाग नहीं मिला।", departments: {
                     pharmacy: { name: "ओ पी फार्मेसी", location: "ग्राउंड फ्लोर", description: "दवाएं यहां से लें" },
@@ -554,7 +550,7 @@
                 }
             },
             ml: {
-                title: "അപ്പോളോ അഡ്ലക്സ് ആശുപത്രി", subtitle: "വേ ഫൈൻഡർ നാവിഗേഷൻ സിസ്റ്റം",
+                subtitle: "വേ ഫൈൻഡർ നാവിഗേഷൻ സിസ്റ്റം",
                 searchPlaceholder: "🔍 വകുപ്പ് പേര് ടൈപ്പ് ചെയ്യുക...", searchHint: "ഫിൽട്ടർ ചെയ്യാൻ ടൈപ്പ് ചെയ്യുക",
                 noResults: "വകുപ്പുകൾ കണ്ടെത്തിയില്ല.", departments: {
                     pharmacy: { name: "ഒ പി ഫാർമസി", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "മരുന്നുകൾ ഇവിടെ നിന്ന് ലഭിക്കും" },
@@ -584,7 +580,7 @@
                 }
             },
             ta: {
-                title: "அப்பல்லோ அட்லக்ஸ் மருத்துவமனை", subtitle: "வழிகாட்டி அமைப்பு",
+                subtitle: "வழிகாட்டி அமைப்பு",
                 searchPlaceholder: "🔍 துறையின் பெயரை உள்ளிடவும்...", searchHint: "துறைகளை வடிகட்ட தட்டச்சு செய்யவும்",
                 noResults: "துறைகள் எதுவும் கிடைக்கவில்லை.", departments: {
                     pharmacy: { name: "OP மருந்தகம்", location: "தரை தளம்", description: "மருந்துகளை இங்கே பெறுங்கள்" },
@@ -614,7 +610,7 @@
                 }
             },
             ar: {
-                title: "مستشفى أبولو أدلوكس", subtitle: "نظام الملاحة للعثور على الطريق",
+                subtitle: "نظام الملاحة للعثور على الطريق",
                 searchPlaceholder: "🔍 اكتب اسم القسم...", searchHint: "اكتب لتصفية الأقسام",
                 noResults: "لم يتم العثور على أقسام.", departments: {
                     pharmacy: { name: "صيدلية العيادات", location: "الطابق الأرضي", description: "احصل على أدويتك هنا" },
@@ -684,7 +680,6 @@
             localStorage.setItem('selectedLanguage', lang);
             const t = translations[lang];
             
-            // Note: Title h1 is removed, so we only update the subtitle (Way Finder)
             document.querySelector('.hospital-subtitle').textContent = t.subtitle;
             document.getElementById('searchInput').placeholder = t.searchPlaceholder;
             document.querySelector('.search-hint').textContent = t.searchHint;
