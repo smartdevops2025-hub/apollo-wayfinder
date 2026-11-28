@@ -348,12 +348,20 @@
             <p id="deptDescAdmission">Patient admission & registration</p>
         </div>
 
-        <!-- Insurance Department (NEW) -->
+        <!-- Insurance Department -->
         <div class="department-box" data-name="insurance" data-keywords="insurance claim policy health insurance desk">
             <div class="department-icon">🛡️</div>
             <h3 id="deptNameInsurance">Insurance</h3>
             <p class="department-location" id="deptFloorInsurance">Ground Floor</p>
             <p id="deptDescInsurance">Health insurance & claims</p>
+        </div>
+
+        <!-- Canteen Department (NEW) -->
+        <div class="department-box" data-name="canteen" data-keywords="canteen food cafe restaurant eat drink beverages sukham">
+            <div class="department-icon">🍽️</div>
+            <h3 id="deptNameCanteen">Canteen</h3>
+            <p class="department-location" id="deptFloorCanteen">Ground Floor</p>
+            <p id="deptDescCanteen">Food & beverages</p>
         </div>
 
     </div>
@@ -416,7 +424,8 @@
                 noResults: "No departments found. Try different keywords.",
                 dept: {
                     admission: { name: "Admission", location: "Ground Floor", description: "Patient admission & registration" },
-                    insurance: { name: "Insurance", location: "Ground Floor", description: "Health insurance & claims" }
+                    insurance: { name: "Insurance", location: "Ground Floor", description: "Health insurance & claims" },
+                    canteen: { name: "Canteen", location: "Ground Floor", description: "Food & beverages" }
                 }
             },
             hi: {
@@ -426,7 +435,8 @@
                 noResults: "कोई विभाग नहीं मिला।", 
                 dept: {
                     admission: { name: "प्रवेश (Admission)", location: "ग्राउंड फ्लोर", description: "रोगी प्रवेश और पंजीकरण" },
-                    insurance: { name: "बीमा (Insurance)", location: "ग्राउंड फ्लोर", description: "स्वास्थ्य बीमा और दावे" }
+                    insurance: { name: "बीमा (Insurance)", location: "ग्राउंड फ्लोर", description: "स्वास्थ्य बीमा और दावे" },
+                    canteen: { name: "कैंटीन", location: "ग्राउंड फ्लोर", description: "खाना और पेय" }
                 }
             },
             ml: {
@@ -436,7 +446,8 @@
                 noResults: "വകുപ്പുകൾ കണ്ടെത്തിയില്ല.", 
                 dept: {
                     admission: { name: "അഡ്മിഷൻ", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "രോഗി പ്രവേശനവും രജിസ്ട്രേഷനും" },
-                    insurance: { name: "ഇൻഷുറൻസ്", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ആരോഗ്യ ഇൻഷുറൻസും ക്ലെയിമുകളും" }
+                    insurance: { name: "ഇൻഷുറൻസ്", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ആരോഗ്യ ഇൻഷുറൻസും ക്ലെയിമുകളും" },
+                    canteen: { name: "കാന്റീൻ", location: "ഗ്രൗണ്ട് ഫ്ലോർ", description: "ഭക്ഷണവും പാനീയങ്ങളും" }
                 }
             },
             ta: {
@@ -446,7 +457,8 @@
                 noResults: "துறைகள் எதுவும் கிடைக்கவில்லை.", 
                 dept: {
                     admission: { name: "சேர்க்கை", location: "தரை தளம்", description: "நோயாளி சேர்க்கை மற்றும் பதிவு" },
-                    insurance: { name: "காப்பீடு", location: "தரை தளம்", description: "சுகாதார காப்பீடு மற்றும் உரிமைகோரல்கள்" }
+                    insurance: { name: "காப்பீடு", location: "தரை தளம்", description: "சுகாதார காப்பீடு மற்றும் உரிமைகோரல்கள்" },
+                    canteen: { name: "உணவகம்", location: "தரை தளம்", description: "உணவு & பானங்கள்" }
                 }
             },
             ar: {
@@ -456,7 +468,8 @@
                 noResults: "لم يتم العثور على أقسام.", 
                 dept: {
                     admission: { name: "القبول", location: "الطابق الأرضي", description: "قبول المرضى والتسجيل" },
-                    insurance: { name: "التأمين", location: "الطابق الأرضي", description: "التأمين الصحي والمطالبات" }
+                    insurance: { name: "التأمين", location: "الطابق الأرضي", description: "التأمين الصحي والمطالبات" },
+                    canteen: { name: "الكافيتريا", location: "الطابق الأرضي", description: "طعام ومشروبات" }
                 }
             }
         };
@@ -512,6 +525,12 @@
             document.getElementById('deptNameInsurance').textContent = insurance.name;
             document.getElementById('deptFloorInsurance').textContent = insurance.location;
             document.getElementById('deptDescInsurance').textContent = insurance.description;
+
+            // Update Canteen
+            const canteen = t.dept.canteen;
+            document.getElementById('deptNameCanteen').textContent = canteen.name;
+            document.getElementById('deptFloorCanteen').textContent = canteen.location;
+            document.getElementById('deptDescCanteen').textContent = canteen.description;
         }
 
         function initializeSearch() {
@@ -555,6 +574,8 @@
                         window.location.href = 'admission.html';
                     } else if (departmentName === 'insurance') {
                         window.location.href = 'insurance.html';
+                    } else if (departmentName === 'canteen') {
+                        window.location.href = 'canteen.html';
                     } else {
                         alert('Directions for ' + departmentName + ' coming soon!');
                     }
