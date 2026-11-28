@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HF64PTD7GH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HF64PTD7GH');
+    </script>
+
+    <!-- 🔒 SECURITY PROTECTION -->
+    <script>
+    (function() {
+        'use strict';
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+        
+        const disabledKeys = ['F12', 'F11', 'PrintScreen'];
+        const disabledCombos = [
+            { ctrl: true, shift: true, key: 'I' }, { ctrl: true, shift: true, key: 'J' },
+            { ctrl: true, shift: true, key: 'C' }, { ctrl: true, key: 'U' }
+        ];
+        
+        document.addEventListener('keydown', function(e) {
+            if (disabledKeys.includes(e.key)) { e.preventDefault(); return false; }
+            for (let i = 0; i < disabledCombos.length; i++) {
+                const combo = disabledCombos[i];
+                if ((combo.ctrl === e.ctrlKey || combo.ctrl === undefined) &&
+                    (combo.shift === e.shiftKey || combo.shift === undefined) &&
+                    combo.key === e.key) { e.preventDefault(); return false; }
+            }
+        });
+        
+        let devToolsOpen = false;
+        setInterval(function() {
+            const widthThreshold = window.outerWidth - window.innerWidth > 160;
+            const heightThreshold = window.outerHeight - window.innerHeight > 160;
+            if ((widthThreshold || heightThreshold) && !devToolsOpen) {
+                devToolsOpen = true;
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    })();
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directions to Canteen - Apollo Adlux Hospital</title>
+    <style>
+    /* APOLLO ADLUX PALETTE */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+    }
+    
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 15px;
+        background-color: #F4F7F9;
+        line-height: 1.6;
+        font-size: 16px;
+        padding-top: 120px;
+    }
+    
+    .header {
+        text-align: center;
+        background: white;
+        padding: 20px 15px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 119, 168, 0.1);
+        border: 2px solid #0077A8;
+    }
+    
+    .hospital-logo {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        margin: 0 auto 10px;
+        display: block;
+    }
+    
+    .header h1 {
+        color: #0077A8;
+        font-size: 1.4rem;
+        margin: 0;
+    }
+    
+    /* Language Selector */
+    .language-selector {
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .language-btn {
+        padding: 10px 15px;
+        background: white;
+        border: 2px solid #0077A8;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        min-width: 70px;
+        color: #0077A8;
+        font-weight: 600;
+    }
+    
+    .language-btn.active {
+        background: #0077A8;
+        color: white;
+    }
+    
+    /* FLOATING PROGRESS TRACKER */
+    .floating-progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 10px 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        border-bottom: 2px solid #0077A8;
+    }
+    
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background-color: #e0e0e0;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 8px;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #0077A8, #BFA073);
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+    
+    .step-counter {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: #666;
+        font-weight: 500;
+    }
+    
+    .current-step-info {
+        font-weight: bold;
+        color: #0077A8;
+    }
+    
+    .page-title {
+        color: #0077A8;
+        text-align: center;
+        font-size: 1.6rem;
+        margin: 20px 0;
+        font-weight: bold;
+        line-height: 1.3;
+        padding: 0 10px;
+    }
+    
+    .step {
+        background-color: white;
+        margin: 20px 0;
+        padding: 20px 15px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        overflow: hidden;
+        scroll-margin-top: 100px;
+    }
+    
+    .step h2 {
+        color: #0077A8;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+        line-height: 1.3;
+        padding: 0 5px;
+    }
+    
+    .step p {
+        font-size: 1.1rem;
+        color: #333;
+        margin-top: 12px;
+        line-height: 1.5;
+        font-weight: 500;
+        padding: 0 5px;
+    }
+    
+    /* IMAGE CONTAINER */
+    .image-container {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 10px;
+        margin: 15px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f8f9fa;
+        min-height: 200px;
+    }
+    
+    .image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 3px solid #0077A8;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        display: block;
+    }
+    
+    /* Lazy Loading Styles */
+    .lazy-load {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        background: #f8f9fa;
+    }
+    
+    .lazy-load.loaded {
+        opacity: 1;
+    }
+    
+    .lazy-load:not(.loaded) {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+    }
+    
+    @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+    
+    .nav-button {
+        background: linear-gradient(135deg, #0077A8, #005a80);
+        color: white;
+        padding: 16px 30px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 15px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        width: 100%;
+        max-width: 280px;
+        touch-action: manipulation;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-button:active {
+        transform: scale(0.98);
+        background: linear-gradient(135deg, #005a80, #0077A8);
+    }
+    
+    .button-container {
+        text-align: center;
+        margin-top: 30px;
+        padding: 20px 0;
+    }
+    
+    @media (max-width: 480px) {
+        body { font-size: 15px; padding: 12px; padding-top: 100px; }
+        .header { padding: 15px 10px; margin-bottom: 15px; }
+        .hospital-logo { max-width: 180px; }
+        .header h1 { font-size: 1.2rem; }
+        .floating-progress-container { padding: 8px 12px; }
+        .page-title { font-size: 1.4rem; margin: 15px 0; }
+        .step { padding: 15px 12px; margin: 15px 0; scroll-margin-top: 80px; }
+        .step h2 { font-size: 1.2rem; margin-bottom: 12px; }
+        .step p { font-size: 1rem; margin-top: 10px; }
+        .language-btn { padding: 8px 12px; font-size: 0.85rem; min-width: 60px; }
+        .nav-button { font-size: 1rem; padding: 14px 25px; max-width: 250px; }
+        .image-container { min-height: 150px; }
+        .step-counter { font-size: 0.8rem; }
+    }
+    
+    @media (min-width: 768px) {
+        body { max-width: 700px; font-size: 17px; padding-top: 130px; }
+        .header { padding: 25px 20px; margin-bottom: 25px; }
+        .hospital-logo { max-width: 250px; }
+        .header h1 { font-size: 1.8rem; }
+        .floating-progress-container { padding: 12px 20px; }
+        .page-title { font-size: 2rem; margin: 25px 0; }
+        .step { padding: 25px 20px; margin: 25px 0; scroll-margin-top: 120px; }
+        .step h2 { font-size: 1.6rem; margin-bottom: 20px; }
+        .step p { font-size: 1.3rem; margin-top: 15px; }
+        .language-btn { padding: 10px 20px; font-size: 1rem; min-width: 80px; }
+        .nav-button { font-size: 1.2rem; padding: 18px 35px; max-width: 300px; }
+        .image-container { min-height: 250px; }
+    }
+    </style>
+</head>
+<body>
+    <!-- FLOATING PROGRESS BAR -->
+    <div class="floating-progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="step-counter">
+            <span class="current-step-info">Step <span id="current-step">1</span> of 11</span>
+            <span id="progress-percentage">9%</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="images/adlux%20logo.jpg" alt="Apollo Adlux Logo" class="hospital-logo" onerror="this.src='https://placehold.co/400x150/0077A8/white?text=Apollo+Adlux'">
+        <h1>Way Finder Navigation</h1>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="hi">हिंदी</button>
+        <button class="language-btn" data-lang="ml">മലയാളം</button>
+        <button class="language-btn" data-lang="ta">தமிழ்</button>
+        <button class="language-btn" data-lang="ar">العربية</button>
+    </div>
+
+    <h1 class="page-title" id="page-title">🍽️ Directions to Canteen</h1>
+    
+    <!-- STEP 1 -->
+    <div class="step" id="step1">
+        <h2 id="step1-title">Step 1: At Reception</h2>
+        <div class="image-container">
+            <img src="images/canteen/1.webp" class="lazy-load" alt="At Reception" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step1-desc">Start your journey from the reception area. Follow the blue arrows on the path pointing towards the canteen.</p>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+        <h2 id="step2-title">Step 2: Walk Ahead</h2>
+        <div class="image-container">
+            <img src="images/canteen/2.webp" class="lazy-load" alt="Walk Ahead" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step2-desc">Continue straight along the corridor, following the arrows as they curve to the left.</p>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3">
+        <h2 id="step3-title">Step 3: Turn Left</h2>
+        <div class="image-container">
+            <img src="images/canteen/3.webp" class="lazy-load" alt="Turn Left" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step3-desc">Walk straight towards the front and turn left as shown in the image.</p>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" id="step4">
+        <h2 id="step4-title">Step 4: Walk Down Stairs</h2>
+        <div class="image-container">
+            <img src="images/canteen/4.webp" class="lazy-load" alt="Walk Down Stairs" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step4-desc">Walk down the stairs.</p>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" id="step5">
+        <h2 id="step5-title">Step 5: Walk Down Stairs</h2>
+        <div class="image-container">
+            <img src="images/canteen/5.webp" class="lazy-load" alt="Walk Down Stairs" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step5-desc">Continue walking down the stairs and turn left.</p>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step" id="step6">
+        <h2 id="step6-title">Step 6: Walk Ahead</h2>
+        <div class="image-container">
+            <img src="images/canteen/6.webp" class="lazy-load" alt="Walk Ahead" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step6-desc">Walk a little further ahead as shown in the image and turn right.</p>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step" id="step7">
+        <h2 id="step7-title">Step 7: Walk Ahead</h2>
+        <div class="image-container">
+            <img src="images/canteen/7.webp" class="lazy-load" alt="Walk Ahead" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step7-desc">Walk a little further ahead as shown in the image and turn left.</p>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="step" id="step8">
+        <h2 id="step8-title">Step 8: Turn Left</h2>
+        <div class="image-container">
+            <img src="images/canteen/8.webp" class="lazy-load" alt="Turn Left" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step8-desc">Walk straight towards the front and turn left as shown in the image.</p>
+    </div>
+
+    <!-- STEP 9 -->
+    <div class="step" id="step9">
+        <h2 id="step9-title">Step 9: Walk Ahead</h2>
+        <div class="image-container">
+            <img src="images/canteen/9.webp" class="lazy-load" alt="Walk Ahead" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step9-desc">Continue straight along the pathway, following the arrows as they curve to the right.</p>
+    </div>
+
+    <!-- STEP 10 -->
+    <div class="step" id="step10">
+        <h2 id="step10-title">Step 10: Walk Ahead</h2>
+        <div class="image-container">
+            <img src="images/canteen/10.webp" class="lazy-load" alt="Walk Ahead" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step10-desc">Walk straight towards the front and turn right as shown in the image.</p>
+    </div>
+
+    <!-- STEP 11 -->
+    <div class="step" id="step11">
+        <h2 id="step11-title">Step 11: Destination</h2>
+        <div class="image-container">
+            <img src="images/canteen/11.webp" class="lazy-load" alt="Destination" loading="lazy" width="800" height="400">
+        </div>
+        <p id="step11-desc">You have successfully arrived at the canteen.</p>
+    </div>
+    
+    <div class="button-container">
+        <button class="nav-button" onclick="window.location.href='index.html'">
+            ← Back to Main Menu
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    'page_title': 'Directions to Canteen',
+                    'page_location': window.location.href,
+                    'department': 'Canteen'
+                });
+            }
+            
+            initializeLazyLoading();
+            initializeProgressTracker();
+            initializeLanguage();
+            
+            let startTime = new Date();
+            window.addEventListener('beforeunload', function() {
+                let endTime = new Date();
+                let timeSpent = Math.round((endTime - startTime) / 1000);
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'time_spent', {
+                        'event_category': 'Engagement',
+                        'event_label': 'Canteen',
+                        'value': timeSpent
+                    });
+                }
+            });
+        });
+
+        function initializeLazyLoading() {
+            const lazyImages = document.querySelectorAll('img.lazy-load');
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            img.classList.add('loaded');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                lazyImages.forEach(img => imageObserver.observe(img));
+            } else {
+                lazyImages.forEach(img => { img.classList.add('loaded'); });
+            }
+        }
+
+        function initializeProgressTracker() {
+            const progressFill = document.getElementById('progress-fill');
+            const currentStep = document.getElementById('current-step');
+            const progressPercentage = document.getElementById('progress-percentage');
+            const steps = document.querySelectorAll('.step');
+            
+            function updateProgress() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = Math.min(100, (scrollTop / docHeight) * 100);
+                
+                progressFill.style.width = scrollPercent + '%';
+                progressPercentage.textContent = Math.round(scrollPercent) + '%';
+                
+                let currentStepIndex = 1;
+                steps.forEach((step, index) => {
+                    const rect = step.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2) {
+                        currentStepIndex = index + 1;
+                    }
+                });
+                
+                currentStep.textContent = currentStepIndex;
+                
+                if (scrollPercent >= 90) {
+                    progressFill.style.background = 'linear-gradient(90deg, #28a745, #20c997)';
+                }
+            }
+            
+            let scrollTimeout;
+            function throttledUpdate() {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(function() {
+                        scrollTimeout = null;
+                        updateProgress();
+                    }, 100);
+                }
+            }
+            
+            window.addEventListener('scroll', throttledUpdate);
+            window.addEventListener('resize', throttledUpdate);
+            updateProgress();
+        }
+
+        // TRANSLATIONS FOR 11 STEPS WITH YOUR EXACT TEXT
+        const translations = {
+            en: {
+                pageTitle: "🍽️ Directions to Canteen",
+                step1Title: "Step 1: At Reception", step1Desc: "Start your journey from the reception area. Follow the blue arrows on the path pointing towards the canteen.",
+                step2Title: "Step 2: Walk Ahead", step2Desc: "Continue straight along the corridor, following the arrows as they curve to the left.",
+                step3Title: "Step 3: Turn Left", step3Desc: "Walk straight towards the front and turn left as shown in the image.",
+                step4Title: "Step 4: Walk Down Stairs", step4Desc: "Walk down the stairs.",
+                step5Title: "Step 5: Walk Down Stairs", step5Desc: "Continue walking down the stairs and turn left.",
+                step6Title: "Step 6: Walk Ahead", step6Desc: "Walk a little further ahead as shown in the image and turn right.",
+                step7Title: "Step 7: Walk Ahead", step7Desc: "Walk a little further ahead as shown in the image and turn left.",
+                step8Title: "Step 8: Turn Left", step8Desc: "Walk straight towards the front and turn left as shown in the image.",
+                step9Title: "Step 9: Walk Ahead", step9Desc: "Continue straight along the pathway, following the arrows as they curve to the right.",
+                step10Title: "Step 10: Walk Ahead", step10Desc: "Walk straight towards the front and turn right as shown in the image.",
+                step11Title: "Step 11: Destination", step11Desc: "You have successfully arrived at the canteen.",
+                backButton: "← Back to Main Menu"
+            },
+            hi: {
+                pageTitle: "🍽️ कैंटीन का रास्ता",
+                step1Title: "चरण 1: रिसेप्शन पर", step1Desc: "रिसेप्शन क्षेत्र से अपनी यात्रा शुरू करें। कैंटीन की ओर इशारा करते हुए रास्ते पर नीले तीरों का पालन करें।",
+                step2Title: "चरण 2: आगे बढ़ें", step2Desc: "गलियारे के साथ सीधे चलते रहें, बाईं ओर मुड़ते तीरों का पालन करें।",
+                step3Title: "चरण 3: बाएं मुड़ें", step3Desc: "सीधे आगे की ओर चलें और छवि में दिखाए अनुसार बाईं ओर मुड़ें।",
+                step4Title: "चरण 4: सीढ़ियों से नीचे जाएं", step4Desc: "सीढ़ियों से नीचे जाएं।",
+                step5Title: "चरण 5: सीढ़ियों से नीचे जाएं", step5Desc: "सीढ़ियों से नीचे उतरना जारी रखें और बाईं ओर मुड़ें।",
+                step6Title: "चरण 6: आगे बढ़ें", step6Desc: "छवि में दिखाए अनुसार थोड़ा और आगे चलें और दाईं ओर मुड़ें।",
+                step7Title: "चरण 7: आगे बढ़ें", step7Desc: "छवि में दिखाए अनुसार थोड़ा और आगे चलें और बाईं ओर मुड़ें।",
+                step8Title: "चरण 8: बाएं मुड़ें", step8Desc: "सीधे आगे की ओर चलें और छवि में दिखाए अनुसार बाईं ओर मुड़ें।",
+                step9Title: "चरण 9: आगे बढ़ें", step9Desc: "रास्ते के साथ सीधे चलते रहें, दाईं ओर मुड़ते तीरों का पालन करें।",
+                step10Title: "चरण 10: आगे बढ़ें", step10Desc: "सीधे आगे की ओर चलें और छवि में दिखाए अनुसार दाईं ओर मुड़ें।",
+                step11Title: "चरण 11: गंतव्य", step11Desc: "आप सफलतापूर्वक कैंटीन पहुंच गए हैं।",
+                backButton: "← मुख्य मेनू पर वापस"
+            },
+            ml: {
+                pageTitle: "🍽️ കാന്റീനിലേക്കുള്ള വഴി",
+                step1Title: "ഘട്ടം 1: റിസപ്ഷനിൽ", step1Desc: "റിസപ്ഷൻ ഏരിയയിൽ നിന്ന് യാത്ര ആരംഭിക്കുക. കാന്റീനിലേക്ക് ചൂണ്ടുന്ന വഴിയിലെ നീല അമ്പുകൾ പിന്തുടരുക.",
+                step2Title: "ഘട്ടം 2: മുന്നോട്ട് നടക്കുക", step2Desc: "ഇടനാഴിയിലൂടെ നേരെ മുന്നോട്ട് പോകുക, ഇടത്തേക്ക് വളയുന്ന അമ്പുകൾ പിന്തുടരുക.",
+                step3Title: "ഘട്ടം 3: ഇടത്തോട്ട് തിരിയുക", step3Desc: "നേരെ മുന്നോട്ട് നടന്ന് ചിത്രത്തിൽ കാണിച്ചിരിക്കുന്നതുപോലെ ഇടത്തോട്ട് തിരിയുക.",
+                step4Title: "ഘട്ടം 4: സ്റ്റെപ്പുകളിൽ താഴേക്ക് പോകുക", step4Desc: "സ്റ്റെപ്പുകളിലൂടെ താഴേക്ക് പോകുക.",
+                step5Title: "ഘട്ടം 5: സ്റ്റെപ്പുകളിൽ താഴേക്ക് പോകുക", step5Desc: "സ്റ്റെപ്പുകളിലൂടെ താഴേക്ക് പോകുന്നത് തുടരുക, എന്നിട്ട് ഇടത്തോട്ട് തിരിയുക.",
+                step6Title: "ഘട്ടം 6: മുന്നോട്ട് നടക്കുക", step6Desc: "ചിത്രത്തിൽ കാണിച്ചിരിക്കുന്നതുപോലെ കുറച്ച് കൂടി മുന്നോട്ട് നടന്ന് വലത്തോട്ട് തിരിയുക.",
+                step7Title: "ഘട്ടം 7: മുന്നോട്ട് നടക്കുക", step7Desc: "ചിത്രത്തിൽ കാണിച്ചിരിക്കുന്നതുപോലെ കുറച്ച് കൂടി മുന്നോട്ട് നടന്ന് ഇടത്തോട്ട് തിരിയുക.",
+                step8Title: "ഘട്ടം 8: ഇടത്തോട്ട് തിരിയുക", step8Desc: "നേരെ മുന്നോട്ട് നടന്ന് ചിത്രത്തിൽ കാണിച്ചിരിക്കുന്നതുപോലെ ഇടത്തോട്ട് തിരിയുക.",
+                step9Title: "ഘട്ടം 9: മുന്നോട്ട് നടക്കുക", step9Desc: "വഴിയിലൂടെ നേരെ മുന്നോട്ട് പോകുക, വലത്തേക്ക് വളയുന്ന അമ്പുകൾ പിന്തുടരുക.",
+                step10Title: "ഘട്ടം 10: മുന്നോട്ട് നടക്കുക", step10Desc: "നേരെ മുന്നോട്ട് നടന്ന് ചിത്രത്തിൽ കാണിച്ചിരിക്കുന്നതുപോലെ വലത്തോട്ട് തിരിയുക.",
+                step11Title: "ഘട്ടം 11: ലക്ഷ്യസ്ഥാനം", step11Desc: "നിങ്ങൾ വിജയകരമായി കാന്റീനിൽ എത്തിയിരിക്കുന്നു.",
+                backButton: "← പ്രധാന മെനുവിലേക്ക് മടങ്ങുക"
+            },
+            ta: {
+                pageTitle: "🍽️ உணவகத்திற்கான வழி",
+                step1Title: "படி 1: வரவேற்பறையில்", step1Desc: "வரவேற்பறை பகுதியிலிருந்து உங்கள் பயணத்தைத் தொடங்குங்கள். உணவகத்தை நோக்கிச் செல்லும் பாதையில் உள்ள நீல அம்புகளைப் பின்பற்றவும்.",
+                step2Title: "படி 2: முன்னோக்கி நடக்கவும்", step2Desc: "நடைபாதையில் நேராகத் தொடரவும், இடதுபுறம் வளைந்து செல்லும் அம்புகளைப் பின்பற்றவும்.",
+                step3Title: "படி 3: இடதுபுறம் திரும்பவும்", step3Desc: "நேராக முன்னோக்கி நடந்து படத்தில் காட்டப்பட்டுள்ளபடி இடதுபுறம் திரும்பவும்.",
+                step4Title: "படி 4: படிக்கட்டுகளில் இறங்குங்கள்", step4Desc: "படிக்கட்டுகளில் இறங்குங்கள்.",
+                step5Title: "படி 5: படிக்கட்டுகளில் இறங்குங்கள்", step5Desc: "படிக்கட்டுகளில் தொடர்ந்து இறங்கி இடதுபுறம் திரும்பவும்.",
+                step6Title: "படி 6: முன்னோக்கி நடக்கவும்", step6Desc: "படத்தில் காட்டப்பட்டுள்ளபடி சற்று முன்னோக்கி நடந்து வலதுபுறம் திரும்பவும்.",
+                step7Title: "படி 7: முன்னோக்கி நடக்கவும்", step7Desc: "படத்தில் காட்டப்பட்டுள்ளபடி சற்று முன்னோக்கி நடந்து இடதுபுறம் திரும்பவும்.",
+                step8Title: "படி 8: இடதுபுறம் திரும்பவும்", step8Desc: "நேராக முன்னோக்கி நடந்து படத்தில் காட்டப்பட்டுள்ளபடி இடதுபுறம் திரும்பவும்.",
+                step9Title: "படி 9: முன்னோக்கி நடக்கவும்", step9Desc: "பாதையில் நேராகத் தொடரவும், வலதுபுறம் வளைந்து செல்லும் அம்புகளைப் பின்பற்றவும்.",
+                step10Title: "படி 10: முன்னோக்கி நடக்கவும்", step10Desc: "நேராக முன்னோக்கி நடந்து படத்தில் காட்டப்பட்டுள்ளபடி வலதுபுறம் திரும்பவும்.",
+                step11Title: "படி 11: இலக்கு", step11Desc: "நீங்கள் வெற்றிகரமாக உணவகத்தை அடைந்துவிட்டீர்கள்.",
+                backButton: "← பிரதான மெனுவுக்குத் திரும்பு"
+            },
+            ar: {
+                pageTitle: "🍽️ الاتجاهات إلى الكافيتريا",
+                step1Title: "الخطوة 1: في الاستقبال", step1Desc: "ابدأ رحلتك من منطقة الاستقبال. اتبع الأسهم الزرقاء على المسار التي تشير نحو الكافيتريا.",
+                step2Title: "الخطوة 2: امشِ للأمام", step2Desc: "استمر في السير مستقيمًا على طول الممر، متبعًا الأسهم التي تنحني إلى اليسار.",
+                step3Title: "الخطوة 3: انعطف يسارًا", step3Desc: "امشِ مستقيمًا نحو الأمام وانعطف يسارًا كما هو موضح في الصورة.",
+                step4Title: "الخطوة 4: انزل الدرج", step4Desc: "انزل الدرج.",
+                step5Title: "الخطوة 5: انزل الدرج", step5Desc: "استمر في النزول على الدرج ثم انعطف يسارًا.",
+                step6Title: "الخطوة 6: امشِ للأمام", step6Desc: "امشِ قليلاً إلى الأمام كما هو موضح في الصورة وانعطف يمينًا.",
+                step7Title: "الخطوة 7: امشِ للأمام", step7Desc: "امشِ قليلاً إلى الأمام كما هو موضح في الصورة وانعطف يسارًا.",
+                step8Title: "الخطوة 8: انعطف يسارًا", step8Desc: "امشِ مستقيمًا نحو الأمام وانعطف يسارًا كما هو موضح في الصورة.",
+                step9Title: "الخطوة 9: امشِ للأمام", step9Desc: "استمر في السير مستقيمًا على طول المسار، متبعًا الأسهم التي تنحني إلى اليمين.",
+                step10Title: "الخطوة 10: امشِ للأمام", step10Desc: "امشِ مستقيمًا نحو الأمام وانعطف يمينًا كما هو موضح في الصورة.",
+                step11Title: "الخطوة 11: الوجهة", step11Desc: "لقد وصلت بنجاح إلى الكافيتريا.",
+                backButton: "← العودة إلى القائمة الرئيسية"
+            }
+        };
+
+        function initializeLanguage() {
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            const languageBtns = document.querySelectorAll('.language-btn');
+            
+            languageBtns.forEach(btn => {
+                if (btn.getAttribute('data-lang') === savedLanguage) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+                
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    languageBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            changeLanguage(savedLanguage);
+        }
+
+        function changeLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            const t = translations[lang];
+            
+            document.getElementById('page-title').textContent = t.pageTitle;
+            
+            // Loop through 1 to 11 to update titles and descriptions
+            for (let i = 1; i <= 11; i++) {
+                document.getElementById('step' + i + '-title').textContent = t['step' + i + 'Title'];
+                document.getElementById('step' + i + '-desc').textContent = t['step' + i + 'Desc'];
+            }
+            
+            document.querySelector('.nav-button').textContent = t.backButton;
+        }
+    </script>
+</body>
+</html>
